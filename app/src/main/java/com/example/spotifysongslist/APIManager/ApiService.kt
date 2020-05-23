@@ -5,6 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("search_by_date?query=android")
+    @GET("artists")
     fun getArtist(): Call<JsonObject>
 }

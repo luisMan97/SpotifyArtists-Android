@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class APIManager {
 
-    private val urlApi = "http://hn.algolia.com/api/v1/"
+    private val urlApi = "https://api.spotify.com/v1/"
 
     fun getClientService(): ApiService {
         val authInterceptor = Interceptor {

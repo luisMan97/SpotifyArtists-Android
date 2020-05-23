@@ -1,5 +1,6 @@
 package com.example.spotifysongslist.modules.songs.view.ui
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spotifysongslist.R
 import com.example.spotifysongslist.modules.songs.model.Artist
+import com.example.spotifysongslist.modules.songs.router.ArtistsRouting
 import com.example.spotifysongslist.modules.songs.view.adapter.ArtistsAdapter
 import com.example.spotifysongslist.modules.songs.view.adapter.ArtistsListener
 import com.example.spotifysongslist.modules.songs.viewmodel.ArtistsViewModel
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity(), ArtistsListener {
 
     private lateinit var artistsAdapter: ArtistsAdapter
     private lateinit var viewModel: ArtistsViewModel
+    private var routing = ArtistsRouting(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +61,10 @@ class MainActivity : AppCompatActivity(), ArtistsListener {
     // SongsAdapter Methods
 
     override fun onSongClicked(artist: Artist, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        routing.presentArtistSelection(artist)
     }
 
     override fun onFavoritelicked(artist: Artist, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        routing.presentFavoriteArtists(artist)
     }
 }
