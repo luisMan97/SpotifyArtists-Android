@@ -23,16 +23,16 @@ class Artist(newJson: JsonObject?): Serializable {
     }
 
     companion object {
-        private const val NAME       = "title"
+        private const val NAME       = "name"
         private const val IMAGE      = "story_title"
-        private const val POPULARITY = "story_url"
+        private const val POPULARITY = "popularity"
     }
 
     private fun getNullAsEmptyString(jsonElement: JsonElement?): String {
         jsonElement?.let {
             return it.isJsonNull then "" ?: it.asString
         }
-        return ""
+        return "null"
     }
 
 }

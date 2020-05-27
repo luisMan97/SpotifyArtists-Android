@@ -1,3 +1,3 @@
 package com.example.spotifysongslist.Utils
 
-typealias callbackResponse<T> = (T?, Throwable?) -> (Unit)
+typealias callbackResponse<T> = (T?, String?) -> (Unit)

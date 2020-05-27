@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,7 +56,12 @@ class MainActivity : AppCompatActivity(), ArtistsListener {
 
         viewModel.getErrorMessage().observe(this, Observer<String> {
             Log.e("MainActivity", it)
+            Toast.makeText(this@MainActivity, it, Toast.LENGTH_LONG).show()
         })
+    }
+
+    private fun onFavoriteClicked(artist: Artist, position: Int) {
+        routing.presentFavoriteArtists(artist)
     }
 
     // SongsAdapter Methods
@@ -64,7 +70,7 @@ class MainActivity : AppCompatActivity(), ArtistsListener {
         routing.presentArtistSelection(artist)
     }
 
-    override fun onFavoritelicked(artist: Artist, position: Int) {
-        routing.presentFavoriteArtists(artist)
+    override fun onFavoriteAddClicked(artist: Artist, position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

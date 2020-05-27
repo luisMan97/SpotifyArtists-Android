@@ -18,6 +18,7 @@ class APIManager {
             val newRequest = it.request()
                 .newBuilder()
                 .url(url)
+                .addHeader("Authorization", "Bearer BQBcVrTixPxedWBsXAigW6cKUlwLqdXxoUKObe-KpYqx5W-S4VcZKcbFiEhtPQJ0d_GNUDtN3MMURV0t6gwtNlyXRYJHjqGZCNSRmGFU7qbKlw__BPmPSq8OvbSpn1u92_f3woxAaQ4G4-8QRi_QcwBYJvEes4ZnO5HpUWnFfW02")
                 .build()
 
             it.proceed(newRequest)

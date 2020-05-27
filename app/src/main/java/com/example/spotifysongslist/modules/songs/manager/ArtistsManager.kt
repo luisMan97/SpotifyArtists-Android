@@ -18,22 +18,29 @@ class ArtistsManager {
     fun getArtists(callback: callbackResponse<ArrayList<Artist>>) {
         call.enqueue(object : Callback<JsonObject> {
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Log.e("ERROR: ", t.message ?: "")
                 t.stackTrace
-                callback(null, t)
+                callback(null, t.message)
             }
 
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                val offersJsonArray = response.body()?.getAsJsonArray("hits")
-                val songs = ArrayList<Artist>()
+                response.body()?.let {
+                    val offersJsonArray = it.getAsJsonArray("artists")
+                    val songs = ArrayList<Artist>()
 
-                offersJsonArray?.forEach { jsonElement: JsonElement ->
-                    val jsonObject = jsonElement.asJsonObject
-                    val song = Artist(jsonObject)
-                    songs.add(song)
+                    offersJsonArray?.let { array ->
+                        array.forEach { jsonElement: JsonElement ->
+                            val jsonObject = jsonElement.asJsonObject
+                            val song = Artist(jsonObject)
+                            songs.add(song)
+                        }
+
+                        callback(songs, null)
+                    } ?: run {
+                        callback(null, "Error get artist")
+                    }
+                } ?: run {
+                    callback(null, "Error get body")
                 }
-
-                callback(songs, null)
             }
         })
     }

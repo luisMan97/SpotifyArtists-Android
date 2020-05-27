@@ -21,7 +21,7 @@ class ArtistsViewModel: ViewModel() {
         manager.getArtists { artists, error ->
             error?.let {
                 processFinished()
-                errorMessage.postValue(it.message)
+                errorMessage.postValue(it)
             }
 
             artists?.let {
